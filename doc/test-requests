@@ -1,0 +1,19 @@
+###
+# expected result:
+# Set-Cookie: cookie greetingCount=1
+# "Hello World"
+###
+curl -v --header "Accept: application/json" -X GET http://localhost:9090/spring-hello/hello/
+
+###
+# expected result:
+# Set-Cookie: cookie greetingCount=4
+# "Good morning Tom"
+###
+curl -v --cookie "greetingCount=3" --header "Accept: application/json" -X GET http://localhost:9090/spring-hello/goodMorning/
+
+###
+# expected result:
+# Set-Cookie: cookie greetingCount=0
+###
+curl -v --cookie "greetingCount=3" --header "Accept: application/json" -X GET http://localhost:9090/spring-hello/reset/
